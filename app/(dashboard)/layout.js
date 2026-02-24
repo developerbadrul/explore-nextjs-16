@@ -1,7 +1,10 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { getAllProduct } from "@/util/productsData";
+import Link from "next/link";
 
 export default function Dashboard({ children }) {
+    const myProducts = getAllProduct()
     return (
         <>
             <Navbar />
@@ -17,8 +20,10 @@ export default function Dashboard({ children }) {
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 min-h-full w-80 p-4">
                         {/* Sidebar content here */}
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
+                        <p>Products name:-</p>
+                        {
+                            myProducts.map(p => (<li key={p.id}><Link href={`/products/product/${p.id}`}>{p.name}</Link></li>))
+                        }
                     </ul>
                 </div>
             </div>
