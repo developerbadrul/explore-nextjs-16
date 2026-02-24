@@ -1,8 +1,9 @@
 import { findProduct } from "@/util/productsData";
 
-const page = async ({ params }) => {
+const SingleProductPage = async ({ params }) => {
 
     const resolvedValue = await params;
+
 
     const productId = Number(resolvedValue.productId);
 
@@ -10,7 +11,7 @@ const page = async ({ params }) => {
 
 
 
-    const { id, name, category, price, stock, createdAt } = singleProduct;
+    const { name, category, price, stock, createdAt } = singleProduct || {};
 
     if (!singleProduct) {
         return <div>Product not found!</div>;
@@ -30,7 +31,7 @@ const page = async ({ params }) => {
     );
 };
 
-export default page;
+export default SingleProductPage;
 
 
 
@@ -43,6 +44,3 @@ const dateFormatter = new Intl.DateTimeFormat('en-GB', {
     hour12: true
 });
 
-// Inside your component:
-{/* <p>Product Entry Date: {dateFormatter.format(new Date(createdAt))}</p> */ }
-// Output: 08 May 2024, 10:05 am
