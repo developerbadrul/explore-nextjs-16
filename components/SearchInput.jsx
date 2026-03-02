@@ -1,13 +1,12 @@
 "use client"
 
-import { usePathname, useSearchParams } from "next/navigation";
+import {  useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 
 const SearchInput = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const pathname = usePathname();
 
     const handleChange = (e) => {
         const value = e.target.value;

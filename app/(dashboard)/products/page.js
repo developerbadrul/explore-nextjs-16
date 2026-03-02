@@ -25,7 +25,6 @@ const SearchProductPage = async ({ searchParams }) => {
             ) : (
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    // Solution: Use the Link as the container and ensure it behaves like a block
                     {filteredProducts.map((p) => (
                         <Link
                             key={p.id}

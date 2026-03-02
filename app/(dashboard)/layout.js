@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import SearchInput from "@/components/SearchInput";
 import { getAllProduct } from "@/util/productsData";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function DashboardLayout({ children }) {
     const myProducts = getAllProduct()
@@ -21,7 +22,9 @@ export default function DashboardLayout({ children }) {
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 min-h-full w-80 p-4">
                         {/* Sidebar content here */}
-                        <SearchInput />
+                        <Suspense fallback={<p>Loading...</p>}>
+                            <SearchInput />
+                        </Suspense>
                         <p>Products name:-</p>
                         {
                             myProducts.map(p => (<li key={p.id}><Link href={`/products/product/${p.id}`}>{p.name}</Link></li>))
