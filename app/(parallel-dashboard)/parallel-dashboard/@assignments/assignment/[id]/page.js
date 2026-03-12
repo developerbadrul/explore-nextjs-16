@@ -2,7 +2,7 @@ import getAllAssignments from "@/util/assignment";
 import wait from "@/util/wait";
 
 const AssignmentDetailsPage = async ({ params }) => {
-    await wait(3000);
+    await wait (3000);
     const assignments = getAllAssignments();
     const { id } = await params;
 
