@@ -1,6 +1,8 @@
+import { addUser } from "@/actions/register-user";
+
 export default function NewUserForm() {
     return (
-        <form>
+        <form action={addUser}>
             <div>
                 <input type="text" name="name" placeholder="Name" />
             </div>
