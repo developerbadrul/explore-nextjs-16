@@ -2,7 +2,7 @@
 
 import connectMongo from "@/dbConnect/connectMondo";
 import UserModel from "@/models/UserModel";
-import { revalidatePath } from "next/cache";
+import { cacheTag, revalidateTag } from "next/cache";
 
 export const addUser = async (formData) => {
     const name = formData.get("name");
@@ -14,25 +14,30 @@ export const addUser = async (formData) => {
 
     try {
         await connectMongo();
-        await new UserModel(userData).save();
+        await UserModel.create(userData);
 
-        revalidatePath("/")
+        revalidateTag("users")
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        throw new Error("Failed to create user");
     }
 
 }
 
 
 export const getUsers = async () => {
+    "use cache";
+
+    cacheTag("users");
     try {
         await connectMongo();
 
         // get users
-        const users = await UserModel.find();
+        const users = await UserModel.find().lean();
 
-        return users;
+        return users ?? [];
     } catch (err) {
-        console.log(err);
+        console.error(error);
+        return [];
     }
 };

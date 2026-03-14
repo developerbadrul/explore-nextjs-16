@@ -3,6 +3,9 @@ import { getUsers } from "@/actions/register-user";
 const UserList = async () => {
     const users = await getUsers();
 
+    console.log(users);
+    
+
     return (
         <div className="card w-full max-w-2xl mx-auto mt-10 shadow-xl">
             <div className="flex items-center justify-between border-b border-brand-muted/20 pb-4 mb-6">
@@ -16,7 +19,7 @@ const UserList = async () => {
                 <div className="space-y-3">
                     {users.map((user, index) => (
                         <div
-                            key={user.id}
+                            key={user._id}
                             className="flex items-center justify-between p-4 rounded-xl bg-brand-dark/50 border border-brand-muted/10 hover:border-brand-accent/40 transition-all group"
                         >
                             <div className="flex items-center gap-4">
